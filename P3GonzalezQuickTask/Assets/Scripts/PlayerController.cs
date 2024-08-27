@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PlayerController : MonoBehaviour
 
     SpriteRenderer playerSprite;
     Rigidbody2D playerRb;
+
 
     // Start is called before the first frame update
     void Start()
@@ -52,5 +54,18 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         isOnGround = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "WIN") ;
+        {
+            WinGame();
+        }
+    }
+
+    public void WinGame()
+    {
+        SceneManager.LoadSceneAsync(2);
     }
 }
